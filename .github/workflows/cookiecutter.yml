@@ -68,5 +68,5 @@ jobs:
       - name: Force push new repo contents
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "Initial plugin structure"
+          commit_message: "Initial library structure"
           push_options: --force
