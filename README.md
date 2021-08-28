@@ -8,6 +8,8 @@ The name of your repository will be the name of the Python package that you publ
 
 Add a one-line description of your repository, then click "Create repository from template".
 
+![Screenshot of the create repository interface](https://user-images.githubusercontent.com/9599/131230293-7ed5760e-b385-407e-bbf1-c6fc7540d3fe.png)
+
 Once created, your new repository will execute a GitHub Actions workflow that uses cookiecutter to rewrite the repository to the desired state. This make take 30 seconds or so.
 
 You can see an example of a repository generated using this template here:
