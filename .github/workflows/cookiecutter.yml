@@ -50,20 +50,20 @@ jobs:
           rm -rf .github
           export REPO_NAME=$(echo $INFO | jq -r '.repository.name')
           # Run cookiecutter
+          pushd /tmp
           cookiecutter gh:simonw/python-lib --no-input \
             lib_name=$REPO_NAME \
             description="$(echo $INFO | jq -r .repository.description)" \
             github_username="$(echo $INFO | jq -r .repository.owner.login)" \
             author_name="$(echo $INFO | jq -r .repository.owner.name)"
+          popd
           # Move generated content to root directory of repo
-          mv $REPO_NAME/* .
+          mv /tmp/$REPO_NAME/* .
           # And .github and .gitignore too:
-          mv $REPO_NAME/.gitignore .
-          mv $REPO_NAME/.github .
+          mv /tmp/$REPO_NAME/.gitignore .
+          mv /tmp/$REPO_NAME/.github .
           # Actions are not allowed to create new actions - workaround:
           mv .github/workflows .github/rename-this-to-workflows
-          # Now remove the empty datasette-x directory:
-          rmdir $REPO_NAME
 
       - name: Force push new repo contents
         uses: stefanzweifel/git-auto-commit-action@v4
