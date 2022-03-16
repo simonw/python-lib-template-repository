@@ -16,8 +16,12 @@ You can see an example of a repository generated using this template here:
 
 - https://github.com/simonw/python-lib-template-repository-demo
 
-## Enabling workflows in your new repository
+## GitHub Actions setup by this repository
 
-GitHub Actions like this are not allowed to create new workflows themselves.
+The `test.yml` GitHub Actions workflow will run your tests automatically any time you push a change to the repo.
 
-Your new repository will have a folder in it called `.github/rename-this-to-workflows` - rename that folder to `.github/workflows` to enable the `test.yml` and `publish.yml` workflows, which can then run tests for your plugin and publish new GitHub releases to PyPI, as [described here](https://github.com/simonw/python-lib#publishing-your-library-as-a-package-to-pypi).
+The `publish.yml` Action runs when you create a new GitHub release. It can build and upload your package to [PyPI](https://pypi.org/).
+
+For this to work, you need to create an API token for your PyPI account and add that to your repository as a secret called `PYPI_TOKEN`.
+
+See [Publishing your library as a package to PyPI](https://github.com/simonw/python-lib#publishing-your-library-as-a-package-to-pypi) for details.

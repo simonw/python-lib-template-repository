@@ -1,9 +1,11 @@
-name: Run cookiecutter on first push
+name: Execute template to populate repository
 
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
-  run-cookiecutter:
+  setup-repo:
     if: ${{ github.repository != 'simonw/python-lib-template-repository' }}
     runs-on: ubuntu-latest
     steps:
@@ -46,8 +48,6 @@ jobs:
         env:
           INFO: ${{ steps.fetch-repo-and-user-details.outputs.result }}
         run: |
-          # Delete this workflow:
-          rm -rf .github
           export REPO_NAME=$(echo $INFO | jq -r '.repository.name')
           # Run cookiecutter
           pushd /tmp
@@ -59,11 +59,10 @@ jobs:
           popd
           # Move generated content to root directory of repo
           mv /tmp/$REPO_NAME/* .
-          # And .github and .gitignore too:
+          # And .gitignore too:
           mv /tmp/$REPO_NAME/.gitignore .
-          mv /tmp/$REPO_NAME/.github .
-          # Actions are not allowed to create new actions - workaround:
-          mv .github/workflows .github/rename-this-to-workflows
+          # Delete the setup.yml workflow, it has served its purpose
+          rm .github/workflows/setup.yml
 
       - name: Force push new repo contents
         uses: stefanzweifel/git-auto-commit-action@v4
