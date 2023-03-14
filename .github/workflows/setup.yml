@@ -4,6 +4,9 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   setup-repo:
     if: ${{ github.repository != 'simonw/python-lib-template-repository' }}
