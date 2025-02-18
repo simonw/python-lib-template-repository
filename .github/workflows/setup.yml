@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   setup-repo:
-    if: ${{ github.repository != 'simonw/python-lib-template-repository' }}
+    if: ${{ !github.event.repository.is_template }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
