@@ -24,4 +24,4 @@ jobs:
         pip install '.[test]'
     - name: Run tests
       run: |
-        [ -d tests ] && python -m pytest || echo "Tests directory not found"
+        if [ -d tests ]; then python -m pytest; else echo "Tests directory not found"; fi
