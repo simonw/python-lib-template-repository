@@ -14,7 +14,7 @@ Once created, your new repository will execute a GitHub Actions workflow that us
 
 You can see an example of a repository generated using this template here:
 
-- https://github.com/simonw/python-lib-template-repository-demo
+- [https://github.com/simonw/python-lib-template-demo](https://github.com/simonw/python-lib-template-demo)
 
 ## GitHub Actions setup by this repository
 
